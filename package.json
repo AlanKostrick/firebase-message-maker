@@ -1,0 +1,22 @@
+{
+  "name": "message-maker",
+  "version": "1.0.0",
+  "description": "an application using firebase to store messages from users",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "Alan Kostrick",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "firebase": "^7.3.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "eslint": "^6.6.0",
+    "parcel-bundler": "^1.12.4"
+  }
+}
