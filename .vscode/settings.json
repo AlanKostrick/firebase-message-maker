@@ -1,4 +1,4 @@
 {
-    "javascript.preferences.quoteStyle": "single",
-    "editor.formatOnSave": true
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true
 }
