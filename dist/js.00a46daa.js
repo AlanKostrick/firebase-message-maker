@@ -126,7 +126,18 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Header;
 
 function Header() {
-  return "\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n    <nav class=\"nav\">\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup'>Sign Up</li>\n            <li class='nav-link nav-list__login'>Login</li>\n            <li class='nav-link nav-list__logout'>Logout</li>\n        </ul>\n     </nav>\n";
+  return "\n    <nav class=\"nav\">\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup'>Sign Up</li>\n            <li class='nav-link nav-list__login'>Login</li>\n            <li class='nav-link nav-list__logout'>Logout</li>\n        </ul>\n     </nav>\n";
+}
+},{}],"js/components/Home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Home;
+
+function Home() {
+  return "\n    <figure class=\"figure\">\n        <img src=\"https://images.unsplash.com/photo-1473181488821-2d23949a045a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\" class=\"figure-img img-fluid rounded\" alt=\"A generic square placeholder image with rounded corners in a figure.\">\n        <figcaption class=\"figure-caption\">A caption for the above image.</figcaption>\n    </figure>\n    ";
 }
 },{}],"node_modules/process/browser.js":[function(require,module,exports) {
 
@@ -18075,6 +18086,8 @@ module.hot.accept(reloadCSS);
 
 var _Header = _interopRequireDefault(require("./components/Header"));
 
+var _Home = _interopRequireDefault(require("./components/Home"));
+
 require("bootstrap");
 
 require("bootstrap/dist/css/bootstrap.css");
@@ -18083,18 +18096,26 @@ require("@fortawesome/fontawesome-free/css/all.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Import precompiled Bootstrap css
 pageBuild();
 
 function pageBuild() {
   renderHeader();
+  renderHome();
 }
 
 function renderHeader() {
-  var header = document.querySelector(".header");
+  var header = document.querySelector('.header');
   header.innerHTML = (0, _Header.default)();
 }
-},{"./components/Header":"js/components/Header.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function renderHome() {
+  var home = document.querySelector('.nav-list__home');
+  home.addEventListener('click', function () {
+    var main = document.querySelector('.main');
+    main.innerHTML = (0, _Home.default)();
+  });
+}
+},{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -18122,7 +18143,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57331" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49278" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
