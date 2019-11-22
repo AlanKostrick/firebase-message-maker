@@ -126,7 +126,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Header;
 
 function Header() {
-  return "\n    <nav class=\"nav\">\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup'>Sign Up</li>\n            <li class='nav-link nav-list__login' data-toggle=\"modal\" data-target=\"#modalLoginForm\" >Login</li>\n            <li class='nav-link nav-list__logout'>Logout</li>\n        </ul>\n     </nav>\n";
+  return "\n    <nav class=\"nav\">\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup' data-toggle=\"modal\" data-target=\"#modalRegisterForm\">Sign Up</li>\n            <li class='nav-link nav-list__login' data-toggle=\"modal\" data-target=\"#modalLoginForm\" >Login</li>\n            <li class='nav-link nav-list__logout' data-toggle=\"modal\" data-target=\".bs-example-modal-sm\">Logout</li>\n        </ul>\n     </nav>\n";
 }
 },{}],"assets/notebook.jpg":[function(require,module,exports) {
 module.exports = "/notebook.5de96806.jpg";
@@ -154,7 +154,29 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Login;
 
 function Login() {
-  return "\n      <div class=\"modal fade\" id=\"modalLoginForm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\n      aria-hidden=\"true\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header text-center\">\n            <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body mx-3\">\n            <div class=\"md-form mb-5\">\n              <i class=\"fas fa-envelope prefix grey-text\"></i>\n              <input type=\"email\" id=\"defaultForm-email\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-email\">Your email</label>\n            </div>\n    \n            <div class=\"md-form mb-4\">\n              <i class=\"fas fa-lock prefix grey-text\"></i>\n              <input type=\"password\" id=\"defaultForm-pass\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-pass\">Your password</label>\n            </div>\n    \n          </div>\n          <div class=\"modal-footer d-flex justify-content-center\">\n            <button class=\"btn btn-default login-submit\" data-dismiss=\"modal\">Login</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n      ";
+  return "\n      <div class=\"modal fade\" id=\"modalLoginForm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\n      aria-hidden=\"true\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header text-center\">\n            <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body mx-3\">\n            <div class=\"md-form mb-5\">\n              <i class=\"fas fa-envelope prefix grey-text\"></i>\n              <input type=\"email\" id=\"defaultForm-email\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-email\">Your email</label>\n            </div>\n    \n            <div class=\"md-form mb-4\">\n              <i class=\"fas fa-lock prefix grey-text\"></i>\n              <input type=\"password\" id=\"defaultForm-pass\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-pass\">Your password</label>\n            </div>\n    \n          </div>\n          <div class=\"modal-footer d-flex justify-content-center\">\n            <button class=\"btn btn-primary login-submit\" data-dismiss=\"modal\">Login</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n      ";
+}
+},{}],"js/components/Logout.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Logout;
+
+function Logout() {
+  return "\n    <div class=\"modal bs-example-modal-sm\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n    <div class=\"modal-dialog modal-sm\">\n        <div class=\"modal-content\">\n        <div class=\"modal-header\"><h4>Logout <i class=\"fa fa-lock\"></i></h4></div>\n        <div class=\"modal-body\"><i class=\"fa fa-question-circle\"></i> Are you sure you want to log-off?</div>\n        <div class=\"modal-footer\"><button class=\"btn btn-primary logout-submit\" data-dismiss=\"modal\">Logout</button>\n        </div>\n    </div>\n    </div>\n    ";
+}
+},{}],"js/components/Signup.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Signup;
+
+function Signup() {
+  return "\n    <div class=\"modal fade\" id=\"modalRegisterForm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\n  aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header text-center\">\n        <h4 class=\"modal-title w-100 font-weight-bold\">Sign up</h4>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body mx-3\">\n        <div class=\"md-form mb-5\">\n          <i class=\"fas fa-user prefix grey-text\"></i>\n          <input type=\"text\" id=\"orangeForm-name\" class=\"form-control validate\">\n          <label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-name\">Your name</label>\n        </div>\n        <div class=\"md-form mb-5\">\n          <i class=\"fas fa-envelope prefix grey-text\"></i>\n          <input type=\"email\" id=\"signupForm-email\" class=\"form-control validate\">\n          <label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-email\">Your email</label>\n        </div>\n\n        <div class=\"md-form mb-4\">\n          <i class=\"fas fa-lock prefix grey-text\"></i>\n          <input type=\"password\" id=\"signupForm-pass\" class=\"form-control validate\">\n          <label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-pass\">Your password</label>\n        </div>\n\n      </div>\n      <div class=\"modal-footer d-flex justify-content-center\">\n        <button class=\"btn btn-primary signup-submit\" data-dismiss=\"modal\">Sign up</button>\n      </div>\n    </div>\n  </div>\n</div>\n";
 }
 },{}],"js/components/Messages.js":[function(require,module,exports) {
 "use strict";
@@ -80719,6 +80741,10 @@ var _Home = _interopRequireDefault(require("./components/Home"));
 
 var _Login = _interopRequireDefault(require("./components/Login"));
 
+var _Logout = _interopRequireDefault(require("./components/Logout"));
+
+var _Signup = _interopRequireDefault(require("./components/Signup"));
+
 var _Messages = _interopRequireDefault(require("./components/Messages"));
 
 var _firebase = _interopRequireDefault(require("./config/firebase"));
@@ -80736,7 +80762,9 @@ pageBuild();
 function pageBuild() {
   renderHeader();
   renderHome();
+  renderSignup();
   renderLogin();
+  renderLogout();
   renderMessages();
 }
 
@@ -80767,6 +80795,44 @@ function renderLogin() {
       var auth = _firebase.default.auth();
 
       auth.signInWithEmailAndPassword(email, password).then(function (user) {
+        console.log(user);
+      });
+    }
+  });
+}
+
+function renderLogout() {
+  var main = document.querySelector('.main');
+  var logoutButton = document.querySelector('.nav-list__logout');
+  logoutButton.addEventListener('click', function () {
+    main.innerHTML = (0, _Logout.default)();
+    main.addEventListener('click', function () {
+      if (event.target.classList.contains('logout-submit')) {
+        console.log('firing!');
+
+        var auth = _firebase.default.auth();
+
+        auth.signOut();
+      }
+    });
+  });
+}
+
+function renderSignup() {
+  var signUpBtn = document.querySelector('.nav-list__signup');
+  var main = document.querySelector('.main');
+  signUpBtn.addEventListener('click', function () {
+    main.innerHTML = (0, _Signup.default)();
+  });
+  main.addEventListener('click', function () {
+    if (event.target.classList.contains('signup-submit')) {
+      var email = document.querySelector('#signupForm-email').value;
+      var password = document.querySelector('#signupForm-pass').value;
+      console.log(email, password);
+
+      var auth = _firebase.default.auth();
+
+      auth.createUserWithEmailAndPassword(email, password).then(function (user) {
         console.log(user);
       });
     }
@@ -80822,7 +80888,7 @@ function renderMessages() {
     }
   });
 }
-},{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","./components/Login":"js/components/Login.js","./components/Messages":"js/components/Messages.js","./config/firebase":"js/config/firebase.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","./components/Login":"js/components/Login.js","./components/Logout":"js/components/Logout.js","./components/Signup":"js/components/Signup.js","./components/Messages":"js/components/Messages.js","./config/firebase":"js/config/firebase.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -80850,7 +80916,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62625" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49695" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

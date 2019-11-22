@@ -25,7 +25,7 @@ export default function Login() {
     
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-default login-submit" data-dismiss="modal">Login</button>
+            <button class="btn btn-primary login-submit" data-dismiss="modal">Login</button>
           </div>
         </div>
       </div>

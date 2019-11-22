@@ -1,6 +1,8 @@
 import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
+import Logout from './components/Logout';
+import Signup from './components/Signup';
 import Messages from './components/Messages';
 import firebase from './config/firebase';
 import 'bootstrap';
@@ -12,7 +14,9 @@ pageBuild();
 function pageBuild() {
 	renderHeader();
 	renderHome();
+	renderSignup();
 	renderLogin();
+	renderLogout();
 	renderMessages();
 }
 
@@ -43,6 +47,41 @@ function renderLogin() {
 
 			const auth = firebase.auth();
 			auth.signInWithEmailAndPassword(email, password).then(user => {
+				console.log(user);
+			});
+		}
+	});
+}
+
+function renderLogout() {
+	const main = document.querySelector('.main');
+	const logoutButton = document.querySelector('.nav-list__logout');
+	logoutButton.addEventListener('click', () => {
+		main.innerHTML = Logout();
+		main.addEventListener('click', () => {
+			if (event.target.classList.contains('logout-submit')) {
+				console.log('firing!');
+				const auth = firebase.auth();
+				auth.signOut();
+			}
+		});
+	});
+}
+
+function renderSignup() {
+	const signUpBtn = document.querySelector('.nav-list__signup');
+	const main = document.querySelector('.main');
+	signUpBtn.addEventListener('click', () => {
+		main.innerHTML = Signup();
+	});
+
+	main.addEventListener('click', () => {
+		if (event.target.classList.contains('signup-submit')) {
+			const email = document.querySelector('#signupForm-email').value;
+			const password = document.querySelector('#signupForm-pass').value;
+			console.log(email, password);
+			const auth = firebase.auth();
+			auth.createUserWithEmailAndPassword(email, password).then(user => {
 				console.log(user);
 			});
 		}
