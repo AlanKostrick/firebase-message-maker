@@ -126,8 +126,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Header;
 
 function Header() {
-  return "\n    <nav class=\"nav\">\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup'>Sign Up</li>\n            <li class='nav-link nav-list__login'>Login</li>\n            <li class='nav-link nav-list__logout'>Logout</li>\n        </ul>\n     </nav>\n";
+  return "\n    <nav class=\"nav\">\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup'>Sign Up</li>\n            <li class='nav-link nav-list__login' data-toggle=\"modal\" data-target=\"#modalLoginForm\" >Login</li>\n            <li class='nav-link nav-list__logout'>Logout</li>\n        </ul>\n     </nav>\n";
 }
+},{}],"assets/notebook.jpg":[function(require,module,exports) {
+module.exports = "/notebook.5de96806.jpg";
 },{}],"js/components/Home.js":[function(require,module,exports) {
 "use strict";
 
@@ -136,10 +138,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Home;
 
+var _notebook = _interopRequireDefault(require("../../assets/notebook.jpg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function Home() {
-  return "\n    <figure class=\"figure\">\n        <img src=\"https://images.unsplash.com/photo-1473181488821-2d23949a045a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\" class=\"figure-img img-fluid rounded\" alt=\"A generic square placeholder image with rounded corners in a figure.\">\n        <figcaption class=\"figure-caption\">A caption for the above image.</figcaption>\n    </figure>\n    ";
+  return "\n    <figure class=\"figure\">\n        <img src=\"".concat(_notebook.default, "\">\n        <figcaption class=\"figure-caption\">A caption for the above image.</figcaption>\n    </figure>\n    ");
 }
-},{}],"js/components/Login.js":[function(require,module,exports) {
+},{"../../assets/notebook.jpg":"assets/notebook.jpg"}],"js/components/Login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -148,7 +154,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Login;
 
 function Login() {
-  return "\n    <div>\n        <input id=\"user-email\" type=\"text\" placeholder=\"Enter email\" />\n        <input id=\"user-password\" type=\"text\" placeholder=\"Enter password\" />\n        <button id=\"user-submit\">Submit</button>\n    </div>\n    ";
+  return "\n      <div class=\"modal fade\" id=\"modalLoginForm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\n      aria-hidden=\"true\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header text-center\">\n            <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body mx-3\">\n            <div class=\"md-form mb-5\">\n              <i class=\"fas fa-envelope prefix grey-text\"></i>\n              <input type=\"email\" id=\"defaultForm-email\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-email\">Your email</label>\n            </div>\n    \n            <div class=\"md-form mb-4\">\n              <i class=\"fas fa-lock prefix grey-text\"></i>\n              <input type=\"password\" id=\"defaultForm-pass\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-pass\">Your password</label>\n            </div>\n    \n          </div>\n          <div class=\"modal-footer d-flex justify-content-center\">\n            <button class=\"btn btn-default login-submit\" data-dismiss=\"modal\">Login</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n      ";
 }
 },{}],"js/components/Messages.js":[function(require,module,exports) {
 "use strict";
@@ -156,14 +162,16 @@ function Login() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Messages;
+exports.default = void 0;
 
-function Messages(messages) {
-  return "\n    <div>\n    ".concat(messages.docs.map(function (message) {
+var _default = function _default(messages) {
+  return "\n        <div>\n        ".concat(messages.docs.map(function (message) {
     var messageData = message.data();
-    console.log(messageData);
-  }), "\n    </div>\n    ");
-}
+    return "\n                <section class='card main-content__messages'>\n                  <div class='card-body'>\n                    <h3>".concat(messageData.title, "</h3>\n                    <p>").concat(messageData.content, "</p>\n                    <input class='delete-message__id' type='hidden' value=\"").concat(message.id, "\">\n                    <button class='btn btn-danger delete-message__submit'>&times</button>\n                    <button class='btn btn-info edit-message__submit'>...</button>\n                  </div>\n                 </section>\n                ");
+  }).join(''), "\n        </div>\n\n        <section class='add-message'>\n            <input type='text' placeholder= 'add title' id='add-message__title' />\n            <input type='text' placeholder= 'add content' id='add-message__content' />\n            <button class='add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
+};
+
+exports.default = _default;
 },{}],"node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
 "use strict";
 
@@ -80746,10 +80754,22 @@ function renderHome() {
 }
 
 function renderLogin() {
+  var main = document.querySelector('.main');
   var loginButton = document.querySelector('.nav-list__login');
   loginButton.addEventListener('click', function () {
-    var main = document.querySelector('.main');
     main.innerHTML = (0, _Login.default)();
+  });
+  main.addEventListener('click', function () {
+    if (event.target.classList.contains('login-submit')) {
+      var email = document.querySelector('#defaultForm-email').value;
+      var password = document.querySelector('#defaultForm-pass').value;
+
+      var auth = _firebase.default.auth();
+
+      auth.signInWithEmailAndPassword(email, password).then(function (user) {
+        console.log(user);
+      });
+    }
   });
 }
 
@@ -80758,11 +80778,48 @@ function renderMessages() {
   messagesButton.addEventListener('click', function () {
     var main = document.querySelector('.main');
 
-    var db = _firebase.default.firestore();
+    var db = _firebase.default.firestore(); //get request
+
 
     db.collection('messages').get().then(function (messages) {
-      main.innerHTML = (0, _Messages.default)(messages);
+      var auth = _firebase.default.auth();
+
+      auth.onAuthStateChanged(function (user) {
+        if (user) {
+          main.innerHTML = (0, _Messages.default)(messages);
+        } else {
+          main.innerHTML = "\n\t\t\t\t\t\t\t<h2>You must be logged in!</h2>\n\t\t\t\t\t\t";
+        }
+      });
+    }); //post request
+
+    main.addEventListener('click', function () {
+      if (event.target.classList.contains('add-message__submit')) {
+        var title = document.querySelector('#add-message__title').value;
+        var content = document.querySelector('#add-message__content').value;
+        db.collection('messages').add({
+          title: title,
+          content: content
+        });
+        db.collection('messages').get().then(function (messages) {
+          main.innerHTML = (0, _Messages.default)(messages);
+        });
+      }
     });
+  }); //delete request
+
+  var main = document.querySelector('.main');
+  main.addEventListener('click', function () {
+    if (event.target.classList.contains('delete-message__submit')) {
+      var messageId = document.querySelector('.delete-message__id').value;
+
+      var db = _firebase.default.firestore();
+
+      db.collection('messages').doc(messageId).delete();
+      db.collection('messages').get().then(function (messages) {
+        main.innerHTML = (0, _Messages.default)(messages);
+      });
+    }
   });
 }
 },{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","./components/Login":"js/components/Login.js","./components/Messages":"js/components/Messages.js","./config/firebase":"js/config/firebase.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -80793,7 +80850,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49763" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62625" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
