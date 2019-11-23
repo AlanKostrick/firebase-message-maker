@@ -18,6 +18,7 @@ function pageBuild() {
 	renderLogin();
 	renderLogout();
 	renderMessages();
+	uploadImage();
 }
 
 function renderHeader() {
@@ -79,7 +80,7 @@ function renderSignup() {
 		if (event.target.classList.contains('signup-submit')) {
 			const email = document.querySelector('#signupForm-email').value;
 			const password = document.querySelector('#signupForm-pass').value;
-			console.log(email, password);
+
 			const auth = firebase.auth();
 			auth.createUserWithEmailAndPassword(email, password).then(user => {
 				console.log(user);
@@ -144,6 +145,47 @@ function renderMessages() {
 				.then(messages => {
 					main.innerHTML = Messages(messages);
 				});
+		}
+	});
+}
+function uploadImage() {
+	const main = document.querySelector('.main');
+	main.addEventListener('change', () => {
+		if (event.target.classList.contains('photo-upload')) {
+			let selectedFile = event.target.files[0];
+			let fileName = selectedFile.name;
+			let storageRef = firebase.storage().ref('/images/' + fileName);
+			let uploadTask = storageRef.put(selectedFile);
+
+			uploadTask.on(
+				'state_changed',
+				function(snapshot) {
+					var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					console.log('Upload is ' + progress + '% done');
+					switch (snapshot.state) {
+					case firebase.storage.TaskState.PAUSED: // or 'paused'
+						console.log('Upload is paused');
+						break;
+					case firebase.storage.TaskState.RUNNING: // or 'running'
+						console.log('Upload is running');
+						break;
+					}
+				},
+				function(error) {
+					// Handle unsuccessful uploads
+				},
+				function() {
+					// Handle successful uploads on complete
+					// For instance, get the download URL: https://firebasestorage.googleapis.com/...
+					uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+						console.log('File available at', downloadURL);
+						main.innerHTML = `
+						<img src="${downloadURL}" />
+						`;
+					});
+				}
+			);
 		}
 	});
 }

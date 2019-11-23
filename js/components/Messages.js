@@ -22,6 +22,10 @@ export default messages => {
         <section class='add-message'>
             <input type='text' placeholder= 'add title' id='add-message__title' />
             <input type='text' placeholder= 'add content' id='add-message__content' />
+            <label class="upload-group">
+            Upload File
+            <input type="file" class="upload-group photo-upload">
+            </label>
             <button class='add-message__submit'>Submit</button>
         </section>
 

@@ -190,7 +190,7 @@ var _default = function _default(messages) {
   return "\n        <div>\n        ".concat(messages.docs.map(function (message) {
     var messageData = message.data();
     return "\n                <section class='card main-content__messages'>\n                  <div class='card-body'>\n                    <h3>".concat(messageData.title, "</h3>\n                    <p>").concat(messageData.content, "</p>\n                    <input class='delete-message__id' type='hidden' value=\"").concat(message.id, "\">\n                    <button class='btn btn-danger delete-message__submit'>&times</button>\n                    <button class='btn btn-info edit-message__submit'>...</button>\n                  </div>\n                 </section>\n                ");
-  }).join(''), "\n        </div>\n\n        <section class='add-message'>\n            <input type='text' placeholder= 'add title' id='add-message__title' />\n            <input type='text' placeholder= 'add content' id='add-message__content' />\n            <button class='add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
+  }).join(''), "\n        </div>\n\n        <section class='add-message'>\n            <input type='text' placeholder= 'add title' id='add-message__title' />\n            <input type='text' placeholder= 'add content' id='add-message__content' />\n            <label class=\"upload-group\">\n            Upload File\n            <input type=\"file\" class=\"upload-group photo-upload\">\n            </label>\n            <button class='add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
 };
 
 exports.default = _default;
@@ -80766,6 +80766,7 @@ function pageBuild() {
   renderLogin();
   renderLogout();
   renderMessages();
+  uploadImage();
 }
 
 function renderHeader() {
@@ -80828,7 +80829,6 @@ function renderSignup() {
     if (event.target.classList.contains('signup-submit')) {
       var email = document.querySelector('#signupForm-email').value;
       var password = document.querySelector('#signupForm-pass').value;
-      console.log(email, password);
 
       var auth = _firebase.default.auth();
 
@@ -80888,6 +80888,44 @@ function renderMessages() {
     }
   });
 }
+
+function uploadImage() {
+  var main = document.querySelector('.main');
+  main.addEventListener('change', function () {
+    if (event.target.classList.contains('photo-upload')) {
+      var selectedFile = event.target.files[0];
+      var fileName = selectedFile.name;
+
+      var storageRef = _firebase.default.storage().ref('/images/' + fileName);
+
+      var uploadTask = storageRef.put(selectedFile);
+      uploadTask.on('state_changed', function (snapshot) {
+        var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+        console.log('Upload is ' + progress + '% done');
+
+        switch (snapshot.state) {
+          case _firebase.default.storage.TaskState.PAUSED:
+            // or 'paused'
+            console.log('Upload is paused');
+            break;
+
+          case _firebase.default.storage.TaskState.RUNNING:
+            // or 'running'
+            console.log('Upload is running');
+            break;
+        }
+      }, function (error) {// Handle unsuccessful uploads
+      }, function () {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+          console.log('File available at', downloadURL);
+          main.innerHTML = "\n\t\t\t\t\t\t<img src=\"".concat(downloadURL, "\" />\n\t\t\t\t\t\t");
+        });
+      });
+    }
+  });
+}
 },{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","./components/Login":"js/components/Login.js","./components/Logout":"js/components/Logout.js","./components/Signup":"js/components/Signup.js","./components/Messages":"js/components/Messages.js","./config/firebase":"js/config/firebase.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -80916,7 +80954,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49695" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57161" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
