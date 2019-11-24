@@ -19,14 +19,10 @@ export default messages => {
 		.join('')}
         </div>
 
-        <section class='add-message'>
-            <input type='text' placeholder= 'add title' id='add-message__title' />
-            <input type='text' placeholder= 'add content' id='add-message__content' />
-            <label class="upload-group">
-            Upload File
-            <input type="file" class="upload-group photo-upload">
-            </label>
-            <button class='add-message__submit'>Submit</button>
+        <section class='add-message form-group'>
+            <input class= 'form-control' type='text' placeholder= 'add title' id='add-message__title' />
+            <input class= 'form-control' type='text' placeholder= 'add content' id='add-message__content' />
+            <button class='btn btn-primary add-message__submit'>Submit</button>
         </section>
 
 

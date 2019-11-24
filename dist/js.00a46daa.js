@@ -190,10 +190,22 @@ var _default = function _default(messages) {
   return "\n        <div>\n        ".concat(messages.docs.map(function (message) {
     var messageData = message.data();
     return "\n                <section class='card main-content__messages'>\n                  <div class='card-body'>\n                    <h3>".concat(messageData.title, "</h3>\n                    <p>").concat(messageData.content, "</p>\n                    <input class='delete-message__id' type='hidden' value=\"").concat(message.id, "\">\n                    <button class='btn btn-danger delete-message__submit'>&times</button>\n                    <button class='btn btn-info edit-message__submit'>...</button>\n                  </div>\n                 </section>\n                ");
-  }).join(''), "\n        </div>\n\n        <section class='add-message'>\n            <input type='text' placeholder= 'add title' id='add-message__title' />\n            <input type='text' placeholder= 'add content' id='add-message__content' />\n            <label class=\"upload-group\">\n            Upload File\n            <input type=\"file\" class=\"upload-group photo-upload\">\n            </label>\n            <button class='add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
+  }).join(''), "\n        </div>\n\n        <section class='add-message form-group'>\n            <input class= 'form-control' type='text' placeholder= 'add title' id='add-message__title' />\n            <input class= 'form-control' type='text' placeholder= 'add content' id='add-message__content' />\n            <button class='btn btn-primary add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
 };
 
 exports.default = _default;
+},{}],"js/components/Message.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Message;
+
+function Message(message) {
+  var messageData = message.data();
+  return "\n        <section class='card main-content__message'>\n            <div class='card-body'>\n                <h3>".concat(messageData.title, "</h3>\n                <p>").concat(messageData.content, "</p>\n                <img src=\"").concat(messageData.imageUrl, "\" />\n            </div>\n        </section>\n            \n        <section class='update-message'>\n            <input class='update-message__messageTitle' type='text' placeholder='edit title'>\n            <input class='update-message__messageBody' type='text' placeholder='edit content'>\n            <input type='file' class='upload-group' id='file' />\n            <button class='photo-upload'>Upload File</button>\n            <button class='update-message__submit'>Edit</button>\n            <input class='update-message__id' type='hidden' value=\"").concat(message.id, "\">\n        </section>\n\n    \n        ");
+}
 },{}],"node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
 "use strict";
 
@@ -80747,6 +80759,8 @@ var _Signup = _interopRequireDefault(require("./components/Signup"));
 
 var _Messages = _interopRequireDefault(require("./components/Messages"));
 
+var _Message = _interopRequireDefault(require("./components/Message"));
+
 var _firebase = _interopRequireDefault(require("./config/firebase"));
 
 require("bootstrap");
@@ -80854,9 +80868,10 @@ function renderMessages() {
         if (user) {
           main.innerHTML = (0, _Messages.default)(messages);
         } else {
-          main.innerHTML = "\n\t\t\t\t\t\t\t<h2>You must be logged in!</h2>\n\t\t\t\t\t\t";
+          main.innerHTML = "\n\t\t\t\t\t\t<div class=\"jumbotron\">\n                        <h1 class=\"display-4\">You need to log in!</h1>\n                        <p class=\"lead\">We value our content and our people, you can't just post without getting proper access.</p>\n                        <hr class=\"my-4\">\n                        <p>In a bit smaller text...please remember we value our people, you can't just post without logging in.</p>\n                        <p class=\"lead\">\n                            <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a>\n                        </p>\n                    </div>\n\t\t\t\t\t\t";
         }
       });
+      focusOnSingularMessage();
     }); //post request
 
     main.addEventListener('click', function () {
@@ -80865,7 +80880,8 @@ function renderMessages() {
         var content = document.querySelector('#add-message__content').value;
         db.collection('messages').add({
           title: title,
-          content: content
+          content: content,
+          imageUrl: 'https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg'
         });
         db.collection('messages').get().then(function (messages) {
           main.innerHTML = (0, _Messages.default)(messages);
@@ -80877,7 +80893,7 @@ function renderMessages() {
   var main = document.querySelector('.main');
   main.addEventListener('click', function () {
     if (event.target.classList.contains('delete-message__submit')) {
-      var messageId = document.querySelector('.delete-message__id').value;
+      var messageId = event.target.parentElement.querySelector('.delete-message__id').value;
 
       var db = _firebase.default.firestore();
 
@@ -80886,14 +80902,62 @@ function renderMessages() {
         main.innerHTML = (0, _Messages.default)(messages);
       });
     }
+  }); //update request
+  // main.addEventListener('click', function() {
+  // 	if (event.target.classList.contains('update-message__submit')) {
+  // 		const messageId = event.target.parentElement.querySelector(
+  // 			'.update-message__id'
+  // 		).value;
+  // 		const messageTitle = event.target.parentElement.querySelector(
+  // 			'.update-message__messageTitle'
+  // 		).value;
+  // 		const messageContent = event.target.parentElement.querySelector(
+  // 			'.update-message__messageBody'
+  // 		).value;
+  // 		const db = firebase.firestore();
+  // 		db.collection('messages')
+  // 			.doc(messageId)
+  // 			.update({
+  // 				title: messageTitle,
+  // 				content: messageContent
+  // 			});
+  // 		db.collection('messages')
+  // 			.doc(messageId)
+  // 			.get()
+  // 			.then(message => {
+  // 				document.querySelector('.main-content__message').innerHTML = Message(
+  // 					message
+  // 				);
+  // 			});
+  // 	}
+  // });
+}
+
+function focusOnSingularMessage() {
+  var main = document.querySelector('.main');
+  main.addEventListener('click', function () {
+    if (event.target.classList.contains('edit-message__submit')) {
+      var messageId = event.target.parentElement.querySelector('.delete-message__id').value;
+
+      var db = _firebase.default.firestore();
+
+      db.collection('messages').doc(messageId).get().then(function (message) {
+        main.innerHTML = (0, _Message.default)(message);
+      });
+    }
   });
 }
 
 function uploadImage() {
   var main = document.querySelector('.main');
   main.addEventListener('change', function () {
-    if (event.target.classList.contains('photo-upload')) {
-      var selectedFile = event.target.files[0];
+    var messageId = event.target.parentElement.querySelector('.update-message__id').value;
+    var messageTitle = event.target.parentElement.querySelector('.update-message__messageTitle').value;
+    var messageContent = event.target.parentElement.querySelector('.update-message__messageBody').value;
+    var uploadBtn = document.querySelector('.photo-upload');
+    uploadBtn.addEventListener('click', function () {
+      var chooseFile = document.querySelector('#file');
+      var selectedFile = chooseFile.files[0];
       var fileName = selectedFile.name;
 
       var storageRef = _firebase.default.storage().ref('/images/' + fileName);
@@ -80919,14 +80983,23 @@ function uploadImage() {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+          var db = _firebase.default.firestore();
+
+          db.collection('messages').doc(messageId).update({
+            title: messageTitle,
+            content: messageContent,
+            imageUrl: downloadURL
+          });
+          db.collection('messages').doc(messageId).get().then(function (message) {
+            document.querySelector('.main-content__message').innerHTML = (0, _Message.default)(message);
+          });
           console.log('File available at', downloadURL);
-          main.innerHTML = "\n\t\t\t\t\t\t<img src=\"".concat(downloadURL, "\" />\n\t\t\t\t\t\t");
         });
       });
-    }
+    });
   });
 }
-},{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","./components/Login":"js/components/Login.js","./components/Logout":"js/components/Logout.js","./components/Signup":"js/components/Signup.js","./components/Messages":"js/components/Messages.js","./config/firebase":"js/config/firebase.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","./components/Login":"js/components/Login.js","./components/Logout":"js/components/Logout.js","./components/Signup":"js/components/Signup.js","./components/Messages":"js/components/Messages.js","./components/Message":"js/components/Message.js","./config/firebase":"js/config/firebase.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -80954,7 +81027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57161" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51643" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

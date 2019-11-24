@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Signup from './components/Signup';
 import Messages from './components/Messages';
+import Message from './components/Message';
 import firebase from './config/firebase';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -105,10 +106,19 @@ function renderMessages() {
 						main.innerHTML = Messages(messages);
 					} else {
 						main.innerHTML = `
-							<h2>You must be logged in!</h2>
+						<div class="jumbotron">
+                        <h1 class="display-4">You need to log in!</h1>
+                        <p class="lead">We value our content and our people, you can't just post without getting proper access.</p>
+                        <hr class="my-4">
+                        <p>In a bit smaller text...please remember we value our people, you can't just post without logging in.</p>
+                        <p class="lead">
+                            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                        </p>
+                    </div>
 						`;
 					}
 				});
+				focusOnSingularMessage();
 			});
 
 		//post request
@@ -119,7 +129,9 @@ function renderMessages() {
 
 				db.collection('messages').add({
 					title: title,
-					content: content
+					content: content,
+					imageUrl:
+            'https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg'
 				});
 				db.collection('messages')
 					.get()
@@ -134,7 +146,9 @@ function renderMessages() {
 	const main = document.querySelector('.main');
 	main.addEventListener('click', () => {
 		if (event.target.classList.contains('delete-message__submit')) {
-			const messageId = document.querySelector('.delete-message__id').value;
+			const messageId = event.target.parentElement.querySelector(
+				'.delete-message__id'
+			).value;
 			const db = firebase.firestore();
 			db.collection('messages')
 				.doc(messageId)
@@ -147,12 +161,74 @@ function renderMessages() {
 				});
 		}
 	});
+
+	//update request
+	// main.addEventListener('click', function() {
+	// 	if (event.target.classList.contains('update-message__submit')) {
+	// 		const messageId = event.target.parentElement.querySelector(
+	// 			'.update-message__id'
+	// 		).value;
+	// 		const messageTitle = event.target.parentElement.querySelector(
+	// 			'.update-message__messageTitle'
+	// 		).value;
+	// 		const messageContent = event.target.parentElement.querySelector(
+	// 			'.update-message__messageBody'
+	// 		).value;
+
+	// 		const db = firebase.firestore();
+	// 		db.collection('messages')
+	// 			.doc(messageId)
+	// 			.update({
+	// 				title: messageTitle,
+	// 				content: messageContent
+	// 			});
+
+	// 		db.collection('messages')
+	// 			.doc(messageId)
+	// 			.get()
+	// 			.then(message => {
+	// 				document.querySelector('.main-content__message').innerHTML = Message(
+	// 					message
+	// 				);
+	// 			});
+	// 	}
+	// });
+}
+
+function focusOnSingularMessage() {
+	const main = document.querySelector('.main');
+	main.addEventListener('click', function() {
+		if (event.target.classList.contains('edit-message__submit')) {
+			const messageId = event.target.parentElement.querySelector(
+				'.delete-message__id'
+			).value;
+
+			const db = firebase.firestore();
+			db.collection('messages')
+				.doc(messageId)
+				.get()
+				.then(message => {
+					main.innerHTML = Message(message);
+				});
+		}
+	});
 }
 function uploadImage() {
 	const main = document.querySelector('.main');
 	main.addEventListener('change', () => {
-		if (event.target.classList.contains('photo-upload')) {
-			let selectedFile = event.target.files[0];
+		const messageId = event.target.parentElement.querySelector(
+			'.update-message__id'
+		).value;
+		const messageTitle = event.target.parentElement.querySelector(
+			'.update-message__messageTitle'
+		).value;
+		const messageContent = event.target.parentElement.querySelector(
+			'.update-message__messageBody'
+		).value;
+		const uploadBtn = document.querySelector('.photo-upload');
+		uploadBtn.addEventListener('click', () => {
+			const chooseFile = document.querySelector('#file');
+			let selectedFile = chooseFile.files[0];
 			let fileName = selectedFile.name;
 			let storageRef = firebase.storage().ref('/images/' + fileName);
 			let uploadTask = storageRef.put(selectedFile);
@@ -179,13 +255,27 @@ function uploadImage() {
 					// Handle successful uploads on complete
 					// For instance, get the download URL: https://firebasestorage.googleapis.com/...
 					uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+						const db = firebase.firestore();
+						db.collection('messages')
+							.doc(messageId)
+							.update({
+								title: messageTitle,
+								content: messageContent,
+								imageUrl: downloadURL
+							});
+
+						db.collection('messages')
+							.doc(messageId)
+							.get()
+							.then(message => {
+								document.querySelector(
+									'.main-content__message'
+								).innerHTML = Message(message);
+							});
 						console.log('File available at', downloadURL);
-						main.innerHTML = `
-						<img src="${downloadURL}" />
-						`;
 					});
 				}
 			);
-		}
+		});
 	});
 }
