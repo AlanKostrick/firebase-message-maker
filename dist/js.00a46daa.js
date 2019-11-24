@@ -204,7 +204,7 @@ exports.default = Message;
 
 function Message(message) {
   var messageData = message.data();
-  return "\n        <section class='card main-content__message'>\n            <div class='card-body'>\n                <h3>".concat(messageData.title, "</h3>\n                <p>").concat(messageData.content, "</p>\n                <img src=\"").concat(messageData.imageUrl, "\" />\n            </div>\n        </section>\n            \n        <section class='update-message'>\n            <input class='update-message__messageTitle' type='text' placeholder='edit title'>\n            <input class='update-message__messageBody' type='text' placeholder='edit content'>\n            <input type='file' class='upload-group' id='file' />\n            <button class='photo-upload'>Upload File</button>\n            <button class='update-message__submit'>Edit</button>\n            <input class='update-message__id' type='hidden' value=\"").concat(message.id, "\">\n        </section>\n\n    \n        ");
+  return "\n        <section class='card main-content__message'>\n            <div class='card-body'>\n                <h3>".concat(messageData.title, "</h3>\n                <p>").concat(messageData.content, "</p>\n                <img src=\"").concat(messageData.imageUrl, "\"  class=\"img-thumbnail rounded float-left\" width=\"200\" height=\"200\"/>\n            </div>\n            <section class='update-message'>\n                <input class='update-message__messageTitle' type='text' placeholder='edit title' />\n                <input class='update-message__messageBody' type='text' placeholder='edit content' />\n                <input type='file' class='btn upload-group' id='file' />\n                <button class='btn btn-primary photo-upload'>Edit</button>\n                <input class='update-message__id' type='hidden' value=\"").concat(message.id, "\" />\n            </section>\n        </section>\n       \n        ");
 }
 },{}],"node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
 "use strict";
@@ -80876,8 +80876,8 @@ function renderMessages() {
 
     main.addEventListener('click', function () {
       if (event.target.classList.contains('add-message__submit')) {
-        var title = document.querySelector('#add-message__title').value;
-        var content = document.querySelector('#add-message__content').value;
+        var title = event.target.parentElement.querySelector('#add-message__title').value;
+        var content = event.target.parentElement.querySelector('#add-message__content').value;
         db.collection('messages').add({
           title: title,
           content: content,
@@ -80991,7 +80991,7 @@ function uploadImage() {
             imageUrl: downloadURL
           });
           db.collection('messages').doc(messageId).get().then(function (message) {
-            document.querySelector('.main-content__message').innerHTML = (0, _Message.default)(message);
+            main.innerHTML = (0, _Message.default)(message);
           });
           console.log('File available at', downloadURL);
         });
@@ -81027,7 +81027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51643" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61210" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

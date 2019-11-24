@@ -124,8 +124,12 @@ function renderMessages() {
 		//post request
 		main.addEventListener('click', () => {
 			if (event.target.classList.contains('add-message__submit')) {
-				const title = document.querySelector('#add-message__title').value;
-				const content = document.querySelector('#add-message__content').value;
+				const title = event.target.parentElement.querySelector(
+					'#add-message__title'
+				).value;
+				const content = event.target.parentElement.querySelector(
+					'#add-message__content'
+				).value;
 
 				db.collection('messages').add({
 					title: title,
@@ -268,10 +272,9 @@ function uploadImage() {
 							.doc(messageId)
 							.get()
 							.then(message => {
-								document.querySelector(
-									'.main-content__message'
-								).innerHTML = Message(message);
+								main.innerHTML = Message(message);
 							});
+
 						console.log('File available at', downloadURL);
 					});
 				}
