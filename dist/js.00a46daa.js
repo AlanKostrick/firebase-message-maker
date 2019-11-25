@@ -62955,7 +62955,44 @@ _app.default.firestore();
 
 var _default = _app.default;
 exports.default = _default;
-},{"firebase/app":"node_modules/firebase/app/dist/index.cjs.js","firebase/firestore":"node_modules/firebase/firestore/dist/index.esm.js","firebase/database":"node_modules/firebase/database/dist/index.esm.js","firebase/auth":"node_modules/firebase/auth/dist/index.esm.js","firebase/storage":"node_modules/firebase/storage/dist/index.esm.js"}],"js/auth/auth.js":[function(require,module,exports) {
+},{"firebase/app":"node_modules/firebase/app/dist/index.cjs.js","firebase/firestore":"node_modules/firebase/firestore/dist/index.esm.js","firebase/database":"node_modules/firebase/database/dist/index.esm.js","firebase/auth":"node_modules/firebase/auth/dist/index.esm.js","firebase/storage":"node_modules/firebase/storage/dist/index.esm.js"}],"js/context/context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _firebase = _interopRequireDefault(require("../config/firebase"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getDatabaseCollectionContext() {
+  var db = _firebase.default.firestore();
+
+  var messagesRef = db.collection('messages');
+  return messagesRef;
+}
+
+function getDatabaseItemContext(messageId) {
+  var db = _firebase.default.firestore();
+
+  var messagesRef = db.collection('messages').doc(messageId);
+  return messagesRef;
+}
+
+function getMainContext() {
+  var main = document.querySelector('.main');
+  return main;
+}
+
+var _default = {
+  getDatabaseCollectionContext: getDatabaseCollectionContext,
+  getDatabaseItemContext: getDatabaseItemContext,
+  getMainContext: getMainContext
+};
+exports.default = _default;
+},{"../config/firebase":"js/config/firebase.js"}],"js/auth/auth.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62971,15 +63008,17 @@ var _Signup = _interopRequireDefault(require("../components/Signup"));
 
 var _firebase = _interopRequireDefault(require("../config/firebase"));
 
+var _context = _interopRequireDefault(require("../context/context"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function login() {
-  var main = document.querySelector('.main');
   var loginButton = document.querySelector('.nav-list__login');
   loginButton.addEventListener('click', function () {
-    main.innerHTML = (0, _Login.default)();
+    _context.default.getMainContext().innerHTML = (0, _Login.default)();
   });
-  main.addEventListener('click', function () {
+
+  _context.default.getMainContext().addEventListener('click', function () {
     if (event.target.classList.contains('login-submit')) {
       var email = document.querySelector('#defaultForm-email').value;
       var password = document.querySelector('#defaultForm-pass').value;
@@ -62994,11 +63033,11 @@ function login() {
 }
 
 function logout() {
-  var main = document.querySelector('.main');
   var logoutButton = document.querySelector('.nav-list__logout');
   logoutButton.addEventListener('click', function () {
-    main.innerHTML = (0, _Logout.default)();
-    main.addEventListener('click', function () {
+    _context.default.getMainContext().innerHTML = (0, _Logout.default)();
+
+    _context.default.getMainContext().addEventListener('click', function () {
       if (event.target.classList.contains('logout-submit')) {
         console.log('firing!');
 
@@ -63012,11 +63051,11 @@ function logout() {
 
 function signup() {
   var signUpBtn = document.querySelector('.nav-list__signup');
-  var main = document.querySelector('.main');
   signUpBtn.addEventListener('click', function () {
-    main.innerHTML = (0, _Signup.default)();
+    _context.default.getMainContext().innerHTML = (0, _Signup.default)();
   });
-  main.addEventListener('click', function () {
+
+  _context.default.getMainContext().addEventListener('click', function () {
     if (event.target.classList.contains('signup-submit')) {
       var email = document.querySelector('#signupForm-email').value;
       var password = document.querySelector('#signupForm-pass').value;
@@ -63036,7 +63075,7 @@ var _default = {
   signup: signup
 };
 exports.default = _default;
-},{"../components/Login":"js/components/Login.js","../components/Logout":"js/components/Logout.js","../components/Signup":"js/components/Signup.js","../config/firebase":"js/config/firebase.js"}],"js/components/Header.js":[function(require,module,exports) {
+},{"../components/Login":"js/components/Login.js","../components/Logout":"js/components/Logout.js","../components/Signup":"js/components/Signup.js","../config/firebase":"js/config/firebase.js","../context/context":"js/context/context.js"}],"js/components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63095,13 +63134,14 @@ exports.default = void 0;
 
 var _Home = _interopRequireDefault(require("../components/Home"));
 
+var _context = _interopRequireDefault(require("../context/context"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function home() {
   var home = document.querySelector('.nav-list__home');
   home.addEventListener('click', function () {
-    var main = document.querySelector('.main');
-    main.innerHTML = (0, _Home.default)();
+    _context.default.getMainContext().innerHTML = (0, _Home.default)();
   });
 }
 
@@ -63109,7 +63149,7 @@ var _default = {
   home: home
 };
 exports.default = _default;
-},{"../components/Home":"js/components/Home.js"}],"js/components/Messages.js":[function(require,module,exports) {
+},{"../components/Home":"js/components/Home.js","../context/context":"js/context/context.js"}],"js/components/Messages.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63137,44 +63177,7 @@ function Message(message) {
   var messageData = message.data();
   return "\n        <section class='card main-content__message'>\n            <div class='card-body'>\n                <h3>".concat(messageData.title, "</h3>\n                <p>").concat(messageData.content, "</p>\n                <img src=\"").concat(messageData.imageUrl, "\"  class=\"img-thumbnail rounded float-left\" width=\"200\" height=\"200\"/>\n            </div>\n            <section class='update-message'>\n                <input class='update-message__messageTitle' type='text' placeholder='edit title' />\n                <input class='update-message__messageBody' type='text' placeholder='edit content' />\n                <input type='file' class='btn upload-group' id='file' />\n                <button class='btn btn-primary photo-upload'>Edit</button>\n                <input class='update-message__id' type='hidden' value=\"").concat(message.id, "\" />\n            </section>\n        </section>\n       \n        ");
 }
-},{}],"js/context/context.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _firebase = _interopRequireDefault(require("../config/firebase"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getDatabaseCollectionContext() {
-  var db = _firebase.default.firestore();
-
-  var messagesRef = db.collection('messages');
-  return messagesRef;
-}
-
-function getDatabaseItemContext(messageId) {
-  var db = _firebase.default.firestore();
-
-  var messagesRef = db.collection('messages').doc(messageId);
-  return messagesRef;
-}
-
-function getMainContext() {
-  var main = document.querySelector('.main');
-  return main;
-}
-
-var _default = {
-  getDatabaseCollectionContext: getDatabaseCollectionContext,
-  getDatabaseItemContext: getDatabaseItemContext,
-  getMainContext: getMainContext
-};
-exports.default = _default;
-},{"../config/firebase":"js/config/firebase.js"}],"js/features/messages.js":[function(require,module,exports) {
+},{}],"js/features/messages.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -63269,11 +63272,12 @@ var _firebase = _interopRequireDefault(require("../config/firebase"));
 
 var _Message = _interopRequireDefault(require("../components/Message"));
 
+var _context = _interopRequireDefault(require("../context/context"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function uploadImage() {
-  var main = document.querySelector('.main');
-  main.addEventListener('change', function () {
+  _context.default.getMainContext().addEventListener('change', function () {
     var messageId = event.target.parentElement.querySelector('.update-message__id').value;
     var messageTitle = event.target.parentElement.querySelector('.update-message__messageTitle').value;
     var messageContent = event.target.parentElement.querySelector('.update-message__messageBody').value;
@@ -63314,7 +63318,7 @@ function uploadImage() {
             imageUrl: downloadURL
           });
           db.collection('messages').doc(messageId).get().then(function (message) {
-            main.innerHTML = (0, _Message.default)(message);
+            _context.default.getMainContext().innerHTML = (0, _Message.default)(message);
           });
           console.log('File available at', downloadURL);
         });
@@ -63327,7 +63331,7 @@ var _default = {
   uploadImage: uploadImage
 };
 exports.default = _default;
-},{"../config/firebase":"js/config/firebase.js","../components/Message":"js/components/Message.js"}],"node_modules/jquery/dist/jquery.js":[function(require,module,exports) {
+},{"../config/firebase":"js/config/firebase.js","../components/Message":"js/components/Message.js","../context/context":"js/context/context.js"}],"node_modules/jquery/dist/jquery.js":[function(require,module,exports) {
 var global = arguments[3];
 var process = require("process");
 var define;
@@ -81126,7 +81130,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61379" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64938" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

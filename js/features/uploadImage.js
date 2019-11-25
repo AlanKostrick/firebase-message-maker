@@ -1,9 +1,9 @@
 import firebase from '../config/firebase';
 import Message from '../components/Message';
+import context from '../context/context';
 
 function uploadImage() {
-	const main = document.querySelector('.main');
-	main.addEventListener('change', () => {
+	context.getMainContext().addEventListener('change', () => {
 		const messageId = event.target.parentElement.querySelector(
 			'.update-message__id'
 		).value;
@@ -56,7 +56,7 @@ function uploadImage() {
 							.doc(messageId)
 							.get()
 							.then(message => {
-								main.innerHTML = Message(message);
+								context.getMainContext().innerHTML = Message(message);
 							});
 
 						console.log('File available at', downloadURL);

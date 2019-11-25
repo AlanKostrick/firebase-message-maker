@@ -2,15 +2,15 @@ import Login from '../components/Login';
 import Logout from '../components/Logout';
 import Signup from '../components/Signup';
 import firebase from '../config/firebase';
+import context from '../context/context';
 
 function login() {
-	const main = document.querySelector('.main');
 	const loginButton = document.querySelector('.nav-list__login');
 	loginButton.addEventListener('click', () => {
-		main.innerHTML = Login();
+		context.getMainContext().innerHTML = Login();
 	});
 
-	main.addEventListener('click', () => {
+	context.getMainContext().addEventListener('click', () => {
 		if (event.target.classList.contains('login-submit')) {
 			const email = document.querySelector('#defaultForm-email').value;
 			const password = document.querySelector('#defaultForm-pass').value;
@@ -24,11 +24,10 @@ function login() {
 }
 
 function logout() {
-	const main = document.querySelector('.main');
 	const logoutButton = document.querySelector('.nav-list__logout');
 	logoutButton.addEventListener('click', () => {
-		main.innerHTML = Logout();
-		main.addEventListener('click', () => {
+		context.getMainContext().innerHTML = Logout();
+		context.getMainContext().addEventListener('click', () => {
 			if (event.target.classList.contains('logout-submit')) {
 				console.log('firing!');
 				const auth = firebase.auth();
@@ -40,12 +39,11 @@ function logout() {
 
 function signup() {
 	const signUpBtn = document.querySelector('.nav-list__signup');
-	const main = document.querySelector('.main');
 	signUpBtn.addEventListener('click', () => {
-		main.innerHTML = Signup();
+		context.getMainContext().innerHTML = Signup();
 	});
 
-	main.addEventListener('click', () => {
+	context.getMainContext().addEventListener('click', () => {
 		if (event.target.classList.contains('signup-submit')) {
 			const email = document.querySelector('#signupForm-email').value;
 			const password = document.querySelector('#signupForm-pass').value;

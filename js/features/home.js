@@ -1,10 +1,10 @@
 import Home from '../components/Home';
+import context from '../context/context';
 
 function home() {
 	const home = document.querySelector('.nav-list__home');
 	home.addEventListener('click', () => {
-		const main = document.querySelector('.main');
-		main.innerHTML = Home();
+		context.getMainContext().innerHTML = Home();
 	});
 }
 
