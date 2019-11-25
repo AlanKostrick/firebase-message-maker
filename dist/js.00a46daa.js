@@ -63210,38 +63210,10 @@ function messages() {
         }
       });
       focusOnSingularMessage();
-    }); //post request
-
-
-    _context.default.getMainContext().addEventListener('click', function () {
-      if (event.target.classList.contains('add-message__submit')) {
-        var title = event.target.parentElement.querySelector('#add-message__title').value;
-        var content = event.target.parentElement.querySelector('#add-message__content').value;
-
-        _context.default.getDatabaseCollectionContext().add({
-          title: title,
-          content: content,
-          imageUrl: 'https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg'
-        });
-
-        _context.default.getDatabaseCollectionContext().get().then(function (messages) {
-          _context.default.getMainContext().innerHTML = (0, _Messages.default)(messages);
-        });
-      }
     });
-  }); //delete request
-
-  _context.default.getMainContext().addEventListener('click', function () {
-    if (event.target.classList.contains('delete-message__submit')) {
-      var messageId = event.target.parentElement.querySelector('.delete-message__id').value;
-
-      _context.default.getDatabaseItemContext(messageId).delete();
-
-      _context.default.getDatabaseCollectionContext().get().then(function (messages) {
-        _context.default.getMainContext().innerHTML = (0, _Messages.default)(messages);
-      });
-    }
   });
+  postRequest();
+  deleteRequest();
 }
 
 function focusOnSingularMessage() {
@@ -63251,6 +63223,39 @@ function focusOnSingularMessage() {
 
       _context.default.getDatabaseItemContext(messageId).get().then(function (message) {
         _context.default.getMainContext().innerHTML = (0, _Message.default)(message);
+      });
+    }
+  });
+}
+
+function postRequest() {
+  _context.default.getMainContext().addEventListener('click', function () {
+    if (event.target.classList.contains('add-message__submit')) {
+      var title = event.target.parentElement.querySelector('#add-message__title').value;
+      var content = event.target.parentElement.querySelector('#add-message__content').value;
+
+      _context.default.getDatabaseCollectionContext().add({
+        title: title,
+        content: content,
+        imageUrl: 'https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg'
+      });
+
+      _context.default.getDatabaseCollectionContext().get().then(function (messages) {
+        _context.default.getMainContext().innerHTML = (0, _Messages.default)(messages);
+      });
+    }
+  });
+}
+
+function deleteRequest() {
+  _context.default.getMainContext().addEventListener('click', function () {
+    if (event.target.classList.contains('delete-message__submit')) {
+      var messageId = event.target.parentElement.querySelector('.delete-message__id').value;
+
+      _context.default.getDatabaseItemContext(messageId).delete();
+
+      _context.default.getDatabaseCollectionContext().get().then(function (messages) {
+        _context.default.getMainContext().innerHTML = (0, _Messages.default)(messages);
       });
     }
   });
@@ -81130,7 +81135,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64938" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65136" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

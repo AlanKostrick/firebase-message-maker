@@ -31,49 +31,9 @@ function messages() {
 				});
 				focusOnSingularMessage();
 			});
-
-		//post request
-		context.getMainContext().addEventListener('click', () => {
-			if (event.target.classList.contains('add-message__submit')) {
-				const title = event.target.parentElement.querySelector(
-					'#add-message__title'
-				).value;
-				const content = event.target.parentElement.querySelector(
-					'#add-message__content'
-				).value;
-
-				context.getDatabaseCollectionContext().add({
-					title: title,
-					content: content,
-					imageUrl:
-            'https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg'
-				});
-				context
-					.getDatabaseCollectionContext()
-					.get()
-					.then(messages => {
-						context.getMainContext().innerHTML = Messages(messages);
-					});
-			}
-		});
 	});
-
-	//delete request
-	context.getMainContext().addEventListener('click', () => {
-		if (event.target.classList.contains('delete-message__submit')) {
-			const messageId = event.target.parentElement.querySelector(
-				'.delete-message__id'
-			).value;
-			context.getDatabaseItemContext(messageId).delete();
-
-			context
-				.getDatabaseCollectionContext()
-				.get()
-				.then(messages => {
-					context.getMainContext().innerHTML = Messages(messages);
-				});
-		}
-	});
+	postRequest();
+	deleteRequest();
 }
 
 function focusOnSingularMessage() {
@@ -88,6 +48,50 @@ function focusOnSingularMessage() {
 				.get()
 				.then(message => {
 					context.getMainContext().innerHTML = Message(message);
+				});
+		}
+	});
+}
+
+function postRequest() {
+	context.getMainContext().addEventListener('click', () => {
+		if (event.target.classList.contains('add-message__submit')) {
+			const title = event.target.parentElement.querySelector(
+				'#add-message__title'
+			).value;
+			const content = event.target.parentElement.querySelector(
+				'#add-message__content'
+			).value;
+
+			context.getDatabaseCollectionContext().add({
+				title: title,
+				content: content,
+				imageUrl:
+          'https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg'
+			});
+			context
+				.getDatabaseCollectionContext()
+				.get()
+				.then(messages => {
+					context.getMainContext().innerHTML = Messages(messages);
+				});
+		}
+	});
+}
+
+function deleteRequest() {
+	context.getMainContext().addEventListener('click', () => {
+		if (event.target.classList.contains('delete-message__submit')) {
+			const messageId = event.target.parentElement.querySelector(
+				'.delete-message__id'
+			).value;
+			context.getDatabaseItemContext(messageId).delete();
+
+			context
+				.getDatabaseCollectionContext()
+				.get()
+				.then(messages => {
+					context.getMainContext().innerHTML = Messages(messages);
 				});
 		}
 	});
