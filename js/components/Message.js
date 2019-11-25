@@ -6,6 +6,7 @@ export default function Message(message) {
             <div class='card-body'>
                 <h3>${messageData.title}</h3>
                 <p>${messageData.content}</p>
+                <p></p>
                 <img src="${messageData.imageUrl}"  class="img-thumbnail rounded float-left" width="200" height="200"/>
             </div>
             <section class='update-message'>

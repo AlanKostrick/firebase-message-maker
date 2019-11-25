@@ -38,6 +38,7 @@ function uploadImage() {
 				},
 				function(error) {
 					// Handle unsuccessful uploads
+					console.log(error);
 				},
 				function() {
 					// Handle successful uploads on complete

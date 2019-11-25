@@ -63175,7 +63175,7 @@ exports.default = Message;
 
 function Message(message) {
   var messageData = message.data();
-  return "\n        <section class='card main-content__message'>\n            <div class='card-body'>\n                <h3>".concat(messageData.title, "</h3>\n                <p>").concat(messageData.content, "</p>\n                <img src=\"").concat(messageData.imageUrl, "\"  class=\"img-thumbnail rounded float-left\" width=\"200\" height=\"200\"/>\n            </div>\n            <section class='update-message'>\n                <input class='update-message__messageTitle' type='text' placeholder='edit title' />\n                <input class='update-message__messageBody' type='text' placeholder='edit content' />\n                <input type='file' class='btn upload-group' id='file' />\n                <button class='btn btn-primary photo-upload'>Edit</button>\n                <input class='update-message__id' type='hidden' value=\"").concat(message.id, "\" />\n            </section>\n        </section>\n       \n        ");
+  return "\n        <section class='card main-content__message'>\n            <div class='card-body'>\n                <h3>".concat(messageData.title, "</h3>\n                <p>").concat(messageData.content, "</p>\n                <p></p>\n                <img src=\"").concat(messageData.imageUrl, "\"  class=\"img-thumbnail rounded float-left\" width=\"200\" height=\"200\"/>\n            </div>\n            <section class='update-message'>\n                <input class='update-message__messageTitle' type='text' placeholder='edit title' />\n                <input class='update-message__messageBody' type='text' placeholder='edit content' />\n                <input type='file' class='btn upload-group' id='file' />\n                <button class='btn btn-primary photo-upload'>Edit</button>\n                <input class='update-message__id' type='hidden' value=\"").concat(message.id, "\" />\n            </section>\n        </section>\n       \n        ");
 }
 },{}],"js/features/messages.js":[function(require,module,exports) {
 "use strict";
@@ -63310,7 +63310,9 @@ function uploadImage() {
             console.log('Upload is running');
             break;
         }
-      }, function (error) {// Handle unsuccessful uploads
+      }, function (error) {
+        // Handle unsuccessful uploads
+        console.log(error);
       }, function () {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
@@ -81135,7 +81137,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65136" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50989" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
