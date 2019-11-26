@@ -8,12 +8,15 @@ function messages() {
 	messagesButton.addEventListener('click', () => {
 		//get request
 		context
-			.getDatabaseCollectionContext()
+			.getDatabaseCollectionContext() //context.getDatabaseCollectionContext() is the same as using firebase.firestore().collection('messages')
 			.get()
 			.then(messages => {
 				const auth = firebase.auth();
 				auth.onAuthStateChanged(function(user) {
 					if (user) {
+						//this is the same as...
+						//const main = document.querySelector('.main');
+						//main.innerHTML = ...
 						context.getMainContext().innerHTML = Messages(messages);
 					} else {
 						context.getMainContext().innerHTML = `
@@ -39,9 +42,8 @@ function messages() {
 function focusOnSingularMessage() {
 	context.getMainContext().addEventListener('click', function() {
 		if (event.target.classList.contains('edit-message__submit')) {
-			const messageId = event.target.parentElement.querySelector(
-				'.delete-message__id'
-			).value;
+			const messageId = event.target.parentElement.querySelector('.message__id')
+				.value;
 
 			context
 				.getDatabaseItemContext(messageId)
@@ -82,9 +84,8 @@ function postRequest() {
 function deleteRequest() {
 	context.getMainContext().addEventListener('click', () => {
 		if (event.target.classList.contains('delete-message__submit')) {
-			const messageId = event.target.parentElement.querySelector(
-				'.delete-message__id'
-			).value;
+			const messageId = event.target.parentElement.querySelector('.message__id')
+				.value;
 			context.getDatabaseItemContext(messageId).delete();
 
 			context

@@ -1,5 +1,5 @@
 export default function Message(message) {
-	const messageData = message.data();
+	const messageData = message.data(); //retrieve message data from firebase
 
 	return `
         <section class='card main-content__message'>

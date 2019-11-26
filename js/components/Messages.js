@@ -9,7 +9,11 @@ export default messages => {
                   <div class='card-body'>
                     <h3>${messageData.title}</h3>
                     <p>${messageData.content}</p>
-                    <input class='delete-message__id' type='hidden' value="${message.id}">
+                    <audio controls>
+                        <source src="${messageData.audioUrl}" type="audio/mpeg">
+                        Your browser does not support the audio tag.
+                    </audio>
+                    <input class='message__id' type='hidden' value="${message.id}">
                     <button class='btn btn-danger delete-message__submit'>&times</button>
                     <button class='btn btn-info edit-message__submit'>...</button>
                   </div>
