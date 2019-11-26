@@ -12,7 +12,7 @@
 - configure the linter: `./node_modules/.bin/eslint --init`
   - Run thru the linter options:
     - How would you like to use ESLINT? Select `The check syntax, find problems, and enforce code style`
-    - What type of modules does your project use? Select `JavaScript modules (import/export)
+    - What type of modules does your project use? Select `JavaScript modules (import/export)`
     - Which framework does your project use? Select `None of these`
     - Does your project use TypeScript? `N`
     - Where does your code run? Select `Browser`
@@ -27,3 +27,12 @@
 ### create a config file for Firebase credentials
 
 - copy config code once database is set up and bring into your project..from your settings wheel
+
+### vs-code settings
+
+```
+{
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true
+}
+```
