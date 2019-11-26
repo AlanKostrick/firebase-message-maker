@@ -117,35 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/components/Header.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Header;
-
-function Header() {
-  return "\n    <nav class=\"nav\">\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup'>Sign Up</li>\n            <li class='nav-link nav-list__login' data-toggle=\"modal\" data-target=\"#modalLoginForm\" >Login</li>\n            <li class='nav-link nav-list__logout'>Logout</li>\n        </ul>\n     </nav>\n";
-}
-},{}],"assets/notebook.jpg":[function(require,module,exports) {
-module.exports = "/notebook.5de96806.jpg";
-},{}],"js/components/Home.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Home;
-
-var _notebook = _interopRequireDefault(require("../../assets/notebook.jpg"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Home() {
-  return "\n    <figure class=\"figure\">\n        <img src=\"".concat(_notebook.default, "\">\n        <figcaption class=\"figure-caption\">A caption for the above image.</figcaption>\n    </figure>\n    ");
-}
-},{"../../assets/notebook.jpg":"assets/notebook.jpg"}],"js/components/Login.js":[function(require,module,exports) {
+})({"js/components/Login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -154,24 +126,30 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Login;
 
 function Login() {
-  return "\n      <div class=\"modal fade\" id=\"modalLoginForm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\n      aria-hidden=\"true\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header text-center\">\n            <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body mx-3\">\n            <div class=\"md-form mb-5\">\n              <i class=\"fas fa-envelope prefix grey-text\"></i>\n              <input type=\"email\" id=\"defaultForm-email\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-email\">Your email</label>\n            </div>\n    \n            <div class=\"md-form mb-4\">\n              <i class=\"fas fa-lock prefix grey-text\"></i>\n              <input type=\"password\" id=\"defaultForm-pass\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-pass\">Your password</label>\n            </div>\n    \n          </div>\n          <div class=\"modal-footer d-flex justify-content-center\">\n            <button class=\"btn btn-default login-submit\" data-dismiss=\"modal\">Login</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n      ";
+  return "\n      <div class=\"modal fade\" id=\"modalLoginForm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\n      aria-hidden=\"true\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header text-center\">\n            <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body mx-3\">\n            <div class=\"md-form mb-5\">\n              <i class=\"fas fa-envelope prefix grey-text\"></i>\n              <input type=\"email\" id=\"defaultForm-email\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-email\">Your email</label>\n            </div>\n    \n            <div class=\"md-form mb-4\">\n              <i class=\"fas fa-lock prefix grey-text\"></i>\n              <input type=\"password\" id=\"defaultForm-pass\" class=\"form-control validate\">\n              <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-pass\">Your password</label>\n            </div>\n    \n          </div>\n          <div class=\"modal-footer d-flex justify-content-center\">\n            <button class=\"btn btn-primary login-submit\" data-dismiss=\"modal\">Login</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n      ";
 }
-},{}],"js/components/Messages.js":[function(require,module,exports) {
+},{}],"js/components/Logout.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = Logout;
 
-var _default = function _default(messages) {
-  return "\n        <div>\n        ".concat(messages.docs.map(function (message) {
-    var messageData = message.data();
-    return "\n                <section class='card main-content__messages'>\n                  <div class='card-body'>\n                    <h3>".concat(messageData.title, "</h3>\n                    <p>").concat(messageData.content, "</p>\n                    <input class='delete-message__id' type='hidden' value=\"").concat(message.id, "\">\n                    <button class='btn btn-danger delete-message__submit'>&times</button>\n                    <button class='btn btn-info edit-message__submit'>...</button>\n                  </div>\n                 </section>\n                ");
-  }).join(''), "\n        </div>\n\n        <section class='add-message'>\n            <input type='text' placeholder= 'add title' id='add-message__title' />\n            <input type='text' placeholder= 'add content' id='add-message__content' />\n            <button class='add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
-};
+function Logout() {
+  return "\n    <div class=\"modal bs-example-modal-sm\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n    <div class=\"modal-dialog modal-sm\">\n        <div class=\"modal-content\">\n        <div class=\"modal-header\"><h4>Logout <i class=\"fa fa-lock\"></i></h4></div>\n        <div class=\"modal-body\"><i class=\"fa fa-question-circle\"></i> Are you sure you want to log-off?</div>\n        <div class=\"modal-footer\"><button class=\"btn btn-primary logout-submit\" data-dismiss=\"modal\">Logout</button>\n        </div>\n    </div>\n    </div>\n    ";
+}
+},{}],"js/components/Signup.js":[function(require,module,exports) {
+"use strict";
 
-exports.default = _default;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Signup;
+
+function Signup() {
+  return "\n    <div class=\"modal fade\" id=\"modalRegisterForm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\n  aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header text-center\">\n        <h4 class=\"modal-title w-100 font-weight-bold\">Sign up</h4>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body mx-3\">\n        <div class=\"md-form mb-5\">\n          <i class=\"fas fa-user prefix grey-text\"></i>\n          <input type=\"text\" id=\"orangeForm-name\" class=\"form-control validate\">\n          <label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-name\">Your name</label>\n        </div>\n        <div class=\"md-form mb-5\">\n          <i class=\"fas fa-envelope prefix grey-text\"></i>\n          <input type=\"email\" id=\"signupForm-email\" class=\"form-control validate\">\n          <label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-email\">Your email</label>\n        </div>\n\n        <div class=\"md-form mb-4\">\n          <i class=\"fas fa-lock prefix grey-text\"></i>\n          <input type=\"password\" id=\"signupForm-pass\" class=\"form-control validate\">\n          <label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-pass\">Your password</label>\n        </div>\n\n      </div>\n      <div class=\"modal-footer d-flex justify-content-center\">\n        <button class=\"btn btn-primary signup-submit\" data-dismiss=\"modal\">Sign up</button>\n      </div>\n    </div>\n  </div>\n</div>\n";
+}
 },{}],"node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
 "use strict";
 
@@ -62977,7 +62955,390 @@ _app.default.firestore();
 
 var _default = _app.default;
 exports.default = _default;
-},{"firebase/app":"node_modules/firebase/app/dist/index.cjs.js","firebase/firestore":"node_modules/firebase/firestore/dist/index.esm.js","firebase/database":"node_modules/firebase/database/dist/index.esm.js","firebase/auth":"node_modules/firebase/auth/dist/index.esm.js","firebase/storage":"node_modules/firebase/storage/dist/index.esm.js"}],"node_modules/jquery/dist/jquery.js":[function(require,module,exports) {
+},{"firebase/app":"node_modules/firebase/app/dist/index.cjs.js","firebase/firestore":"node_modules/firebase/firestore/dist/index.esm.js","firebase/database":"node_modules/firebase/database/dist/index.esm.js","firebase/auth":"node_modules/firebase/auth/dist/index.esm.js","firebase/storage":"node_modules/firebase/storage/dist/index.esm.js"}],"js/context/context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _firebase = _interopRequireDefault(require("../config/firebase"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getDatabaseCollectionContext() {
+  var db = _firebase.default.firestore();
+
+  var messagesRef = db.collection('messages');
+  return messagesRef;
+}
+
+function getDatabaseItemContext(messageId) {
+  var db = _firebase.default.firestore();
+
+  var messagesRef = db.collection('messages').doc(messageId);
+  return messagesRef;
+}
+
+function getMainContext() {
+  var main = document.querySelector('.main');
+  return main;
+}
+
+var _default = {
+  getDatabaseCollectionContext: getDatabaseCollectionContext,
+  getDatabaseItemContext: getDatabaseItemContext,
+  getMainContext: getMainContext
+};
+exports.default = _default;
+},{"../config/firebase":"js/config/firebase.js"}],"js/auth/auth.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Login = _interopRequireDefault(require("../components/Login"));
+
+var _Logout = _interopRequireDefault(require("../components/Logout"));
+
+var _Signup = _interopRequireDefault(require("../components/Signup"));
+
+var _firebase = _interopRequireDefault(require("../config/firebase"));
+
+var _context = _interopRequireDefault(require("../context/context"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function login() {
+  var loginButton = document.querySelector('.nav-list__login');
+  loginButton.addEventListener('click', function () {
+    _context.default.getMainContext().innerHTML = (0, _Login.default)();
+  });
+
+  _context.default.getMainContext().addEventListener('click', function () {
+    if (event.target.classList.contains('login-submit')) {
+      var email = document.querySelector('#defaultForm-email').value;
+      var password = document.querySelector('#defaultForm-pass').value;
+
+      var auth = _firebase.default.auth();
+
+      auth.signInWithEmailAndPassword(email, password).then(function (user) {
+        console.log(user);
+      });
+    }
+  });
+}
+
+function logout() {
+  var logoutButton = document.querySelector('.nav-list__logout');
+  logoutButton.addEventListener('click', function () {
+    _context.default.getMainContext().innerHTML = (0, _Logout.default)();
+
+    _context.default.getMainContext().addEventListener('click', function () {
+      if (event.target.classList.contains('logout-submit')) {
+        console.log('firing!');
+
+        var auth = _firebase.default.auth();
+
+        auth.signOut();
+      }
+    });
+  });
+}
+
+function signup() {
+  var signUpBtn = document.querySelector('.nav-list__signup');
+  signUpBtn.addEventListener('click', function () {
+    _context.default.getMainContext().innerHTML = (0, _Signup.default)();
+  });
+
+  _context.default.getMainContext().addEventListener('click', function () {
+    if (event.target.classList.contains('signup-submit')) {
+      var email = document.querySelector('#signupForm-email').value;
+      var password = document.querySelector('#signupForm-pass').value;
+
+      var auth = _firebase.default.auth();
+
+      auth.createUserWithEmailAndPassword(email, password).then(function (user) {
+        console.log(user);
+      });
+    }
+  });
+}
+
+var _default = {
+  login: login,
+  logout: logout,
+  signup: signup
+};
+exports.default = _default;
+},{"../components/Login":"js/components/Login.js","../components/Logout":"js/components/Logout.js","../components/Signup":"js/components/Signup.js","../config/firebase":"js/config/firebase.js","../context/context":"js/context/context.js"}],"js/components/Header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+function Header() {
+  return "\n    <nav class=\"nav\">\n    <h1 class='bg-white rounded nav-logo'>MessageMaker</h1>\n        <ul class='navbar navbar-expand-lg navbar-light bg-light  nav-list'>\n            <li class='nav-link nav-list__home'>Home</li>\n            <li class='nav-link nav-list__messages'>Messages</li>\n            <li class='nav-link nav-list__signup' data-toggle=\"modal\" data-target=\"#modalRegisterForm\">Sign Up</li>\n            <li class='nav-link nav-list__login' data-toggle=\"modal\" data-target=\"#modalLoginForm\" >Login</li>\n            <li class='nav-link nav-list__logout' data-toggle=\"modal\" data-target=\".bs-example-modal-sm\">Logout</li>\n        </ul>\n     </nav>\n";
+}
+},{}],"js/features/header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Header = _interopRequireDefault(require("../components/Header"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function header() {
+  var header = document.querySelector('.header');
+  header.innerHTML = (0, _Header.default)();
+}
+
+var _default = {
+  header: header
+};
+exports.default = _default;
+},{"../components/Header":"js/components/Header.js"}],"assets/notebook.jpg":[function(require,module,exports) {
+module.exports = "/notebook.5de96806.jpg";
+},{}],"js/components/Home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Home;
+
+var _notebook = _interopRequireDefault(require("../../assets/notebook.jpg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Home() {
+  return "\n    <figure class=\"figure\">\n        <img src=\"".concat(_notebook.default, "\">\n        <figcaption class=\"figure-caption\">A caption for the above image.</figcaption>\n    </figure>\n    ");
+}
+},{"../../assets/notebook.jpg":"assets/notebook.jpg"}],"js/features/home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Home = _interopRequireDefault(require("../components/Home"));
+
+var _context = _interopRequireDefault(require("../context/context"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function home() {
+  var home = document.querySelector('.nav-list__home');
+  home.addEventListener('click', function () {
+    _context.default.getMainContext().innerHTML = (0, _Home.default)();
+  });
+}
+
+var _default = {
+  home: home
+};
+exports.default = _default;
+},{"../components/Home":"js/components/Home.js","../context/context":"js/context/context.js"}],"js/components/Messages.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(messages) {
+  return "\n        <div>\n        ".concat(messages.docs.map(function (message) {
+    var messageData = message.data();
+    return "\n                <section class='card main-content__messages'>\n                  <div class='card-body'>\n                    <h3>".concat(messageData.title, "</h3>\n                    <p>").concat(messageData.content, "</p>\n                    <input class='delete-message__id' type='hidden' value=\"").concat(message.id, "\">\n                    <button class='btn btn-danger delete-message__submit'>&times</button>\n                    <button class='btn btn-info edit-message__submit'>...</button>\n                  </div>\n                 </section>\n                ");
+  }).join(''), "\n        </div>\n\n        <section class='add-message form-group'>\n            <input class= 'form-control' type='text' placeholder= 'add title' id='add-message__title' />\n            <input class= 'form-control' type='text' placeholder= 'add content' id='add-message__content' />\n            <button class='btn btn-primary add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
+};
+
+exports.default = _default;
+},{}],"js/components/Message.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Message;
+
+function Message(message) {
+  var messageData = message.data();
+  return "\n        <section class='card main-content__message'>\n            <div class='card-body'>\n                <h3>".concat(messageData.title, "</h3>\n                <p>").concat(messageData.content, "</p>\n                <p></p>\n                <img src=\"").concat(messageData.imageUrl, "\"  class=\"img-thumbnail rounded float-left\" width=\"200\" height=\"200\"/>\n            </div>\n            <section class='update-message'>\n                <input class='update-message__messageTitle' type='text' placeholder='edit title' />\n                <input class='update-message__messageBody' type='text' placeholder='edit content' />\n                <input type='file' class='btn upload-group' id='file' />\n                <button class='btn btn-primary photo-upload'>Edit</button>\n                <input class='update-message__id' type='hidden' value=\"").concat(message.id, "\" />\n            </section>\n        </section>\n       \n        ");
+}
+},{}],"js/features/messages.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _firebase = _interopRequireDefault(require("../config/firebase"));
+
+var _Messages = _interopRequireDefault(require("../components/Messages"));
+
+var _Message = _interopRequireDefault(require("../components/Message"));
+
+var _context = _interopRequireDefault(require("../context/context"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function messages() {
+  var messagesButton = document.querySelector('.nav-list__messages');
+  messagesButton.addEventListener('click', function () {
+    //get request
+    _context.default.getDatabaseCollectionContext().get().then(function (messages) {
+      var auth = _firebase.default.auth();
+
+      auth.onAuthStateChanged(function (user) {
+        if (user) {
+          _context.default.getMainContext().innerHTML = (0, _Messages.default)(messages);
+        } else {
+          _context.default.getMainContext().innerHTML = "\n\t\t\t\t\t\t<div class=\"jumbotron\">\n                        <h1 class=\"display-4\">You need to log in!</h1>\n                        <p class=\"lead\">We value our content and our people, you can't just post without getting proper access.</p>\n                        <hr class=\"my-4\">\n                        <p>In a bit smaller text...please remember we value our people, you can't just post without logging in.</p>\n                        <p class=\"lead\">\n                            <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a>\n                        </p>\n                    </div>\n\t\t\t\t\t\t";
+        }
+      });
+      focusOnSingularMessage();
+    });
+  });
+  postRequest();
+  deleteRequest();
+}
+
+function focusOnSingularMessage() {
+  _context.default.getMainContext().addEventListener('click', function () {
+    if (event.target.classList.contains('edit-message__submit')) {
+      var messageId = event.target.parentElement.querySelector('.delete-message__id').value;
+
+      _context.default.getDatabaseItemContext(messageId).get().then(function (message) {
+        _context.default.getMainContext().innerHTML = (0, _Message.default)(message);
+      });
+    }
+  });
+}
+
+function postRequest() {
+  _context.default.getMainContext().addEventListener('click', function () {
+    if (event.target.classList.contains('add-message__submit')) {
+      var title = event.target.parentElement.querySelector('#add-message__title').value;
+      var content = event.target.parentElement.querySelector('#add-message__content').value;
+
+      _context.default.getDatabaseCollectionContext().add({
+        title: title,
+        content: content,
+        imageUrl: 'https://icon-library.net/images/default-user-icon/default-user-icon-4.jpg'
+      });
+
+      _context.default.getDatabaseCollectionContext().get().then(function (messages) {
+        _context.default.getMainContext().innerHTML = (0, _Messages.default)(messages);
+      });
+    }
+  });
+}
+
+function deleteRequest() {
+  _context.default.getMainContext().addEventListener('click', function () {
+    if (event.target.classList.contains('delete-message__submit')) {
+      var messageId = event.target.parentElement.querySelector('.delete-message__id').value;
+
+      _context.default.getDatabaseItemContext(messageId).delete();
+
+      _context.default.getDatabaseCollectionContext().get().then(function (messages) {
+        _context.default.getMainContext().innerHTML = (0, _Messages.default)(messages);
+      });
+    }
+  });
+}
+
+var _default = {
+  messages: messages
+};
+exports.default = _default;
+},{"../config/firebase":"js/config/firebase.js","../components/Messages":"js/components/Messages.js","../components/Message":"js/components/Message.js","../context/context":"js/context/context.js"}],"js/features/uploadImage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _firebase = _interopRequireDefault(require("../config/firebase"));
+
+var _Message = _interopRequireDefault(require("../components/Message"));
+
+var _context = _interopRequireDefault(require("../context/context"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function uploadImage() {
+  _context.default.getMainContext().addEventListener('change', function () {
+    var messageId = event.target.parentElement.querySelector('.update-message__id').value;
+    var messageTitle = event.target.parentElement.querySelector('.update-message__messageTitle').value;
+    var messageContent = event.target.parentElement.querySelector('.update-message__messageBody').value;
+    var uploadBtn = document.querySelector('.photo-upload');
+    uploadBtn.addEventListener('click', function () {
+      var chooseFile = document.querySelector('#file');
+      var selectedFile = chooseFile.files[0];
+      var fileName = selectedFile.name;
+
+      var storageRef = _firebase.default.storage().ref('/images/' + fileName);
+
+      var uploadTask = storageRef.put(selectedFile);
+      uploadTask.on('state_changed', function (snapshot) {
+        var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+        console.log('Upload is ' + progress + '% done');
+
+        switch (snapshot.state) {
+          case _firebase.default.storage.TaskState.PAUSED:
+            // or 'paused'
+            console.log('Upload is paused');
+            break;
+
+          case _firebase.default.storage.TaskState.RUNNING:
+            // or 'running'
+            console.log('Upload is running');
+            break;
+        }
+      }, function (error) {
+        // Handle unsuccessful uploads
+        console.log(error);
+      }, function () {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+          var db = _firebase.default.firestore();
+
+          db.collection('messages').doc(messageId).update({
+            title: messageTitle,
+            content: messageContent,
+            imageUrl: downloadURL
+          });
+          db.collection('messages').doc(messageId).get().then(function (message) {
+            _context.default.getMainContext().innerHTML = (0, _Message.default)(message);
+          });
+          console.log('File available at', downloadURL);
+        });
+      });
+    });
+  });
+}
+
+var _default = {
+  uploadImage: uploadImage
+};
+exports.default = _default;
+},{"../config/firebase":"js/config/firebase.js","../components/Message":"js/components/Message.js","../context/context":"js/context/context.js"}],"node_modules/jquery/dist/jquery.js":[function(require,module,exports) {
 var global = arguments[3];
 var process = require("process");
 var define;
@@ -80713,15 +81074,15 @@ module.hot.accept(reloadCSS);
 },{"./..\\webfonts\\fa-brands-400.eot":[["fa-brands-400.1bb139e6.eot","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"./..\\webfonts\\fa-brands-400.woff2":[["fa-brands-400.1d34615d.woff2","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"./..\\webfonts\\fa-brands-400.woff":[["fa-brands-400.eca31406.woff","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"./..\\webfonts\\fa-brands-400.ttf":[["fa-brands-400.df86de32.ttf","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"./..\\webfonts\\fa-brands-400.svg":[["fa-brands-400.f1eb0e8c.svg","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"./..\\webfonts\\fa-regular-400.eot":[["fa-regular-400.a2c1909d.eot","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"./..\\webfonts\\fa-regular-400.woff2":[["fa-regular-400.5ca8c932.woff2","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"./..\\webfonts\\fa-regular-400.woff":[["fa-regular-400.3c3cc54e.woff","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"./..\\webfonts\\fa-regular-400.ttf":[["fa-regular-400.cde05ce7.ttf","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"./..\\webfonts\\fa-regular-400.svg":[["fa-regular-400.6ef294e6.svg","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"./..\\webfonts\\fa-solid-900.eot":[["fa-solid-900.90890cef.eot","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./..\\webfonts\\fa-solid-900.woff2":[["fa-solid-900.da0e0451.woff2","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./..\\webfonts\\fa-solid-900.woff":[["fa-solid-900.935b31ea.woff","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./..\\webfonts\\fa-solid-900.ttf":[["fa-solid-900.f2409036.ttf","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./..\\webfonts\\fa-solid-900.svg":[["fa-solid-900.c87ba59a.svg","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
-var _Header = _interopRequireDefault(require("./components/Header"));
+var _auth = _interopRequireDefault(require("./auth/auth"));
 
-var _Home = _interopRequireDefault(require("./components/Home"));
+var _header = _interopRequireDefault(require("./features/header"));
 
-var _Login = _interopRequireDefault(require("./components/Login"));
+var _home = _interopRequireDefault(require("./features/home"));
 
-var _Messages = _interopRequireDefault(require("./components/Messages"));
+var _messages = _interopRequireDefault(require("./features/messages"));
 
-var _firebase = _interopRequireDefault(require("./config/firebase"));
+var _uploadImage = _interopRequireDefault(require("./features/uploadImage"));
 
 require("bootstrap");
 
@@ -80734,95 +81095,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 pageBuild();
 
 function pageBuild() {
-  renderHeader();
-  renderHome();
-  renderLogin();
-  renderMessages();
+  _header.default.header();
+
+  _home.default.home();
+
+  _auth.default.login();
+
+  _auth.default.logout();
+
+  _auth.default.signup();
+
+  _messages.default.messages();
+
+  _uploadImage.default.uploadImage();
 }
-
-function renderHeader() {
-  var header = document.querySelector('.header');
-  header.innerHTML = (0, _Header.default)();
-}
-
-function renderHome() {
-  var home = document.querySelector('.nav-list__home');
-  home.addEventListener('click', function () {
-    var main = document.querySelector('.main');
-    main.innerHTML = (0, _Home.default)();
-  });
-}
-
-function renderLogin() {
-  var main = document.querySelector('.main');
-  var loginButton = document.querySelector('.nav-list__login');
-  loginButton.addEventListener('click', function () {
-    main.innerHTML = (0, _Login.default)();
-  });
-  main.addEventListener('click', function () {
-    if (event.target.classList.contains('login-submit')) {
-      var email = document.querySelector('#defaultForm-email').value;
-      var password = document.querySelector('#defaultForm-pass').value;
-
-      var auth = _firebase.default.auth();
-
-      auth.signInWithEmailAndPassword(email, password).then(function (user) {
-        console.log(user);
-      });
-    }
-  });
-}
-
-function renderMessages() {
-  var messagesButton = document.querySelector('.nav-list__messages');
-  messagesButton.addEventListener('click', function () {
-    var main = document.querySelector('.main');
-
-    var db = _firebase.default.firestore(); //get request
-
-
-    db.collection('messages').get().then(function (messages) {
-      var auth = _firebase.default.auth();
-
-      auth.onAuthStateChanged(function (user) {
-        if (user) {
-          main.innerHTML = (0, _Messages.default)(messages);
-        } else {
-          main.innerHTML = "\n\t\t\t\t\t\t\t<h2>You must be logged in!</h2>\n\t\t\t\t\t\t";
-        }
-      });
-    }); //post request
-
-    main.addEventListener('click', function () {
-      if (event.target.classList.contains('add-message__submit')) {
-        var title = document.querySelector('#add-message__title').value;
-        var content = document.querySelector('#add-message__content').value;
-        db.collection('messages').add({
-          title: title,
-          content: content
-        });
-        db.collection('messages').get().then(function (messages) {
-          main.innerHTML = (0, _Messages.default)(messages);
-        });
-      }
-    });
-  }); //delete request
-
-  var main = document.querySelector('.main');
-  main.addEventListener('click', function () {
-    if (event.target.classList.contains('delete-message__submit')) {
-      var messageId = document.querySelector('.delete-message__id').value;
-
-      var db = _firebase.default.firestore();
-
-      db.collection('messages').doc(messageId).delete();
-      db.collection('messages').get().then(function (messages) {
-        main.innerHTML = (0, _Messages.default)(messages);
-      });
-    }
-  });
-}
-},{"./components/Header":"js/components/Header.js","./components/Home":"js/components/Home.js","./components/Login":"js/components/Login.js","./components/Messages":"js/components/Messages.js","./config/firebase":"js/config/firebase.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./auth/auth":"js/auth/auth.js","./features/header":"js/features/header.js","./features/home":"js/features/home.js","./features/messages":"js/features/messages.js","./features/uploadImage":"js/features/uploadImage.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"node_modules/@fortawesome/fontawesome-free/css/all.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -80850,7 +81137,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62625" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50989" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
