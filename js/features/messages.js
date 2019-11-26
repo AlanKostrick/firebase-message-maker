@@ -29,9 +29,9 @@ function messages() {
 						`;
 					}
 				});
-				focusOnSingularMessage();
 			});
 	});
+	focusOnSingularMessage();
 	postRequest();
 	deleteRequest();
 }

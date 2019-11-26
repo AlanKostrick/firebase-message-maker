@@ -63209,9 +63209,9 @@ function messages() {
           _context.default.getMainContext().innerHTML = "\n\t\t\t\t\t\t<div class=\"jumbotron\">\n                        <h1 class=\"display-4\">You need to log in!</h1>\n                        <p class=\"lead\">We value our content and our people, you can't just post without getting proper access.</p>\n                        <hr class=\"my-4\">\n                        <p>In a bit smaller text...please remember we value our people, you can't just post without logging in.</p>\n                        <p class=\"lead\">\n                            <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a>\n                        </p>\n                    </div>\n\t\t\t\t\t\t";
         }
       });
-      focusOnSingularMessage();
     });
   });
+  focusOnSingularMessage();
   postRequest();
   deleteRequest();
 }
@@ -81137,7 +81137,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50989" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53794" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
