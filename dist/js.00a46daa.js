@@ -63160,7 +63160,8 @@ exports.default = void 0;
 var _default = function _default(messages) {
   return "\n        <div>\n        ".concat(messages.docs.map(function (message) {
     var messageData = message.data();
-    return "\n                <section class='card main-content__messages'>\n                  <div class='card-body'>\n                    <h3>".concat(messageData.title, "</h3>\n                    <p>").concat(messageData.content, "</p>\n                    <audio controls>\n                        <source src=\"").concat(messageData.audioUrl, "\" type=\"audio/mpeg\">\n                        Your browser does not support the audio tag.\n                    </audio>\n                    <input class='message__id' type='hidden' value=\"").concat(message.id, "\">\n                    <button class='btn btn-danger delete-message__submit'>&times</button>\n                    <button class='btn btn-info edit-message__submit'>...</button>\n                  </div>\n                 </section>\n                ");
+    console.log(messageData.audioUrl);
+    return "\n                <section class='card main-content__messages'>\n                  <div class='card-body'>\n                    <h3>".concat(messageData.title, "</h3>\n                    <p>").concat(messageData.content, "</p>\n                    <iframe width=\"560\" height=\"315\" src=\"").concat(messageData.audioUrl, "\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n                    <input class='message__id' type='hidden' value=\"").concat(message.id, "\">\n                    <button class='btn btn-danger delete-message__submit'>&times</button>\n                    <button class='btn btn-info edit-message__submit'>...</button>\n                  </div>\n                 </section>\n                ");
   }).join(''), "\n        </div>\n\n        <section class='add-message form-group'>\n            <input class= 'form-control' type='text' placeholder= 'add title' id='add-message__title' />\n            <input class= 'form-control' type='text' placeholder= 'add content' id='add-message__content' />\n            <button class='btn btn-primary add-message__submit'>Submit</button>\n        </section>\n\n\n        ");
 };
 
@@ -81142,7 +81143,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49600" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52208" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
