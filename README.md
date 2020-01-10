@@ -36,3 +36,19 @@
   "eslint.autoFixOnSave": true
 }
 ```
+
+## Set up deployment
+
+The best place to perform these actions is in the terminal in VS Code
+
+- `npm install firebase-tools -g`
+- `firebase login` to make sure you are logged into your firebase console
+- `firebase init hosting`
+  - Are you ready to proceed? `Y`
+- Please select an option:
+  - `Use an existing project` ...select the project to match wiring from the list
+- What do you want to use as your public directory? `dist` ... the dist directory has everything bundled from parcel for shipping and we will use that for our deployment
+- File `dist/iindex.html` already exists...overwrite? `N`
+  It will say Firebase initialization complete
+
+You can run `firebase serve` to test out the application and then to deploy run `firebase deploy` ...this will give you a hosting url that is now live.
